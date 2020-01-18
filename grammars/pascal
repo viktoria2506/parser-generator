@@ -1,0 +1,39 @@
+s
+
+s = FUNCTION t COLON TYPE SEMICOLON
+  | PROCEDURE t SEMICOLON
+  ;
+
+t = NAME tstroke
+  ;
+
+tstroke = LPAREN args RPAREN
+        | {}
+        ;
+
+args = v list_v
+     | {}
+     ;
+
+v = NAME list_name COLON TYPE
+  ;
+
+list_v = SEMICOLON v list_v
+       | {}
+       ;
+
+list_name = COMMA NAME list_name
+          | {}
+          ;
+
+
+LPAREN = "(";
+RPAREN = ")";
+FUNCTION = "function";
+PROCEDURE = "procedure";
+TYPE : "integer|real|double|char|boolean|byte|string";
+NAME : "[a-zA-Z][a-zA-Z_]*";
+COLON = ":";
+SEMICOLON = ";";
+COMMA = ",";
+WS -> "[ \n\r\t]+";
